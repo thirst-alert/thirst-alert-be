@@ -38,6 +38,10 @@ module.exports = {
 			'error',
 			'never'
 		],
-		'no-var': 'error'
+		'no-var': 'error',
+		'no-unused-vars': [ 'error', { 'argsIgnorePattern': '^_' } ],
+	},
+	'globals': {
+		'StatusError': false
 	}
 }

@@ -1,65 +1,65 @@
 const logger = require('../utils/logger')
 
 global.StatusError = class extends Error {
-  constructor(message, status) {
-    super(message)
-    this.status = status
-  }
+	constructor(message, status) {
+		super(message)
+		this.status = status
+	}
 }
 
 exports.noPathHandler = (_req, _res, next) =>
-  next(new StatusError('Path', 404))
+	next(new StatusError('Path', 404))
 
 exports.errorHandler = (err, _req, res, _next) => {
-  let message, status
-  if (err instanceof StatusError) {
-    message = err.message
-    status = err.status
-  } else if (process.env.ERR_VERBOSE === 'true') {
-    logger.fatal(`Uncaught error: ${err.stack}`)
-    return res.status(500).send({
-      err: err.stack,
-    })
-  } else {
-    message = 'Something went wrong'
-    status = 500
-  }
+	let message, status
+	if (err instanceof StatusError) {
+		message = err.message
+		status = err.status
+	} else if (process.env.ERR_VERBOSE === 'true') {
+		logger.fatal(`Uncaught error: ${err.stack}`)
+		return res.status(500).send({
+			err: err.stack,
+		})
+	} else {
+		message = 'Something went wrong'
+		status = 500
+	}
 
-  switch (status) {
-    case 400:
-      message = `Bad request: ${message}`
-      break
+	switch (status) {
+	case 400:
+		message = `Bad request: ${message}`
+		break
 
-    case 401:
-      message = `Unauthorized: ${message}`
-      break
+	case 401:
+		message = `Unauthorized: ${message}`
+		break
 
-    case 403:
-      message = `Forbidden: ${message}`
-      break
+	case 403:
+		message = `Forbidden: ${message}`
+		break
 
-    case 404:
-      message = `${message} not found`
-      break
+	case 404:
+		message = `${message} not found`
+		break
 
-    case 409:
-      message = `Conflict: ${message}`
-      break
+	case 409:
+		message = `Conflict: ${message}`
+		break
 
-    case 422:
-      message = `Unprocessable Entity: ${message}`
-      break
+	case 422:
+		message = `Unprocessable Entity: ${message}`
+		break
 
-    case 500:
-      message = `Internal Server Error: ${message}`
-      break
+	case 500:
+		message = `Internal Server Error: ${message}`
+		break
 
-    default:
-      break
-  }
+	default:
+		break
+	}
 
-  logger.error(`${status} - ${message}`)
-  return res.status(status).send({
-    error: { message },
-  })
+	logger.error(`${status} - ${message}`)
+	return res.status(status).send({
+		error: { message },
+	})
 }
