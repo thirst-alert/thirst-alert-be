@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const routes = require('./routes/router')
+const { noPathHandler, errorHandler } = require('./middlewares/errors')
 
 require('dotenv').config()
 
@@ -18,6 +19,8 @@ app.get('/', (req, res) => {
 })
 
 app.use(routes)
+app.use(noPathHandler)
+app.use(errorHandler)
 
 app.listen(port, () => {
 	console.log(`Server is running at http://localhost:${port}`)
