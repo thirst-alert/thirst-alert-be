@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const routes = require('./routes/router')
+const reqLogger = require('./middlewares/reqLogger')
 const { noPathHandler, errorHandler } = require('./middlewares/errors')
 
 require('dotenv').config()
@@ -14,7 +15,9 @@ mongoose.connection.once('open', () => {
 	console.log('Connected to MongoDB')
 })
 
-app.get('/', (req, res) => {
+app.use(reqLogger)
+
+app.get('/', (_req, res) => {
 	res.send('hallo')
 })
 

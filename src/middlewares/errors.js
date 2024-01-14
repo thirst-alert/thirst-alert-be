@@ -1,3 +1,5 @@
+const logger = require('../utils/logger')
+
 global.StatusError = class extends Error {
   constructor(message, status) {
     super(message)
@@ -14,6 +16,7 @@ exports.errorHandler = (err, _req, res, _next) => {
     message = err.message
     status = err.status
   } else if (process.env.ERR_VERBOSE === 'true') {
+    logger.fatal(`Uncaught error: ${err.stack}`)
     return res.status(500).send({
       err: err.stack,
     })
@@ -55,6 +58,7 @@ exports.errorHandler = (err, _req, res, _next) => {
       break
   }
 
+  logger.error(`${status} - ${message}`)
   return res.status(status).send({
     error: { message },
   })
