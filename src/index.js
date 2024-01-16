@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const routes = require('./routes/router')
+// const routes = require('./routes/router')
 const reqLogger = require('./middlewares/reqLogger')
 const { noPathHandler, errorHandler } = require('./middlewares/errors')
 
@@ -15,13 +15,17 @@ mongoose.connection.once('open', () => {
 	console.log('Connected to MongoDB')
 })
 
+app.use(express.json())
 app.use(reqLogger)
 
 app.get('/', (_req, res) => {
 	res.send('hallo')
 })
 
-app.use(routes)
+// app.use(routes)
+const router = require('express').Router()
+require('./routes/routes').attachRoutes(router)
+app.use(router)
 app.use(noPathHandler)
 app.use(errorHandler)
 
