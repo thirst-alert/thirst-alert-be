@@ -26,25 +26,28 @@ concurrency:
 
 jobs:
   build:
-
+    name: Build, lint, test and release
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [ 21 ]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false # if true, looks like secrets are exposed to .git/config and available to other jobs, security issue
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node v${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm i
-      - run: npm test
-      - uses: ./.github/actions/create-release
+      - name: Install deps
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test
+      - name: Semantic release
+        uses: ./.github/actions/create-release
         with:
           gh-token: ${{ secrets.GITHUB_TOKEN }}
