@@ -2,7 +2,7 @@ const User = require('../../entities/user')
 
 module.exports.post = {
 	method: 'POST',
-	path: '/test/',
+	path: '/test',
 	schema: {
 		body: {
       type: 'object',

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "pre-dev": "docker-compose up --force-recreate -V",
+    "pre-dev": "docker-compose -f ./docker/local/docker-compose.yml up --force-recreate -V",
     "dev": "nodemon src/index.js",
     "lint": "eslint --ext .js .",
     "test": "cross-env NODE_ENV=test tape src/test/**/*.js | faucet"
