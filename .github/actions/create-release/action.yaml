@@ -1,0 +1,26 @@
+name: Deploy & Release
+
+description: 'Creates a git tag on conditions and may be releasing something'
+
+inputs:
+  gh-token:
+    description: The regular GH token
+    required: true
+  # deploy-token:
+  #   description: A token that allows releasing
+  #   required: true
+
+runs:
+  using: "composite"
+  steps:
+  - name: Semantic Release
+    shell: bash
+    id: semantic
+    run: |
+      npm run semantic-release |& tee -a semantic-log.txt
+      grep -E "(Published release)" semantic-log.txt || echo norelease
+      echo "::set-output name=SEMANTIC_LOG::$(grep -E "(Published release)" semantic-log.txt || echo norelease)"
+    env:
+      GITHUB_TOKEN: ${{ inputs.gh-token }}
+  - run: echo "a release"
+    shell: bash
