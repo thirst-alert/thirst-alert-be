@@ -17,6 +17,7 @@
   "license": "ISC",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
     "faucet": "^0.0.4",
