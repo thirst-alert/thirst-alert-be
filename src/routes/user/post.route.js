@@ -5,12 +5,12 @@ module.exports.post = {
 	path: '/test',
 	schema: {
 		body: {
-      type: 'object',
-      additionalProperties: false,
-      required: [
-        'username'
-      ],
-      properties: {
+			type: 'object',
+			additionalProperties: false,
+			required: [
+				'username'
+			],
+			properties: {
 				username: {
 					type: 'string'
 				}
