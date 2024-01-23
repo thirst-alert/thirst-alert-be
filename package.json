@@ -14,7 +14,7 @@
     "lint": "eslint --ext .js .",
     "test": "cross-env NODE_ENV=test tape src/test/**/*.js | faucet",
     "commit": "npm run lint -- --fix && git-cz",
-    "semantic-release": "semantic-release --debug"
+    "semantic-release": "semantic-release"
   },
   "keywords": [],
   "author": "",
@@ -65,9 +65,7 @@
     "success": false,
     "npmPublish": false,
     "branches": [
-      {
-        "name": "main"
-      },
+      "main",
       {
         "name": "dev",
         "prerelease": true

@@ -50,4 +50,4 @@ jobs:
       - name: Semantic release
         uses: ./.github/actions/create-release
         with:
-          gh-token: ${{ secrets.GH_TOKEN }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
