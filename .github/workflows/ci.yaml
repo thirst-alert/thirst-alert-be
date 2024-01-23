@@ -47,5 +47,4 @@ jobs:
       - run: npm test
       - uses: ./.github/actions/create-release
         with:
-          gh-token: ${{ secrets.GH_TOKEN }}
-          # deploy-token: ${{ secrets.GH_TOKEN }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
