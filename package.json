@@ -3,6 +3,10 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/mellifluus/agri-be.git"
+	},
   "scripts": {
     "start": "node src/index.js",
     "pre-dev": "docker-compose -f ./docker/local/docker-compose.yml up --force-recreate -V",
@@ -10,7 +14,7 @@
     "lint": "eslint --ext .js .",
     "test": "cross-env NODE_ENV=test tape src/test/**/*.js | faucet",
     "commit": "npm run lint -- --fix && git-cz",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release --debug"
   },
   "keywords": [],
   "author": "",
