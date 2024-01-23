@@ -6,14 +6,11 @@ inputs:
   gh-token:
     description: The regular GH token
     required: true
-  # deploy-token:
-  #   description: A token that allows releasing
-  #   required: true
 
 runs:
   using: "composite"
   steps:
-  - name: Semantic Release
+  - name: Check if release should be published
     shell: bash
     id: semantic
     run: |
@@ -22,5 +19,3 @@ runs:
       echo "::set-output name=SEMANTIC_LOG::$(grep -E "(Published release)" semantic-log.txt || echo norelease)"
     env:
       GITHUB_TOKEN: ${{ inputs.gh-token }}
-  - run: echo "a release"
-    shell: bash
