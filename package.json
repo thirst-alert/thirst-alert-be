@@ -10,12 +10,13 @@
     "lint": "eslint --ext .js .",
     "test": "cross-env NODE_ENV=test tape src/test/**/*.js | faucet",
     "commit": "npm run lint -- --fix && git-cz",
-		"semantic-release": "semantic-release"
+    "semantic-release": "semantic-release"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
     "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
     "faucet": "^0.0.4",
@@ -36,7 +37,7 @@
     "pino": "^8.17.2",
     "pino-pretty": "^10.3.1"
   },
-	"release": {
+  "release": {
     "verifyConditions": [
       "@semantic-release/changelog",
       "@semantic-release/git"
