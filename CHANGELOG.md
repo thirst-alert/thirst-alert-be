@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/mellifluus/agri-be/compare/v1.1.1...v1.1.2) (2024-1-23)
+
+
+### Bug Fixes
+
+* 🐛 fixed bug ([111df38](https://github.com/mellifluus/agri-be/commit/111df3804df9ab4de7e818257d4446f7d7973318))
+
 ## [1.1.1](https://github.com/mellifluus/agri-be/compare/v1.1.0...v1.1.1) (2024-1-23)
 
 
