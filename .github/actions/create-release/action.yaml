@@ -21,6 +21,6 @@ runs:
       grep -E "(Published release)" semantic-log.txt || echo norelease
       echo "::set-output name=SEMANTIC_LOG::$(grep -E "(Published release)" semantic-log.txt || echo norelease)"
     env:
-      GITHUB_TOKEN: ${{ inputs.deploy-token }}
+      GITHUB_TOKEN: ${{ inputs.gh-token }}
   - run: echo "a release"
     shell: bash
