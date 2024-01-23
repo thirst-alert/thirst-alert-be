@@ -1,3 +1,10 @@
+# [1.1.0-dev.1](https://github.com/mellifluus/agri-be/compare/v1.0.0...v1.1.0-dev.1) (2024-1-23)
+
+
+### Features
+
+* 🎸 test feat ([66a4c9a](https://github.com/mellifluus/agri-be/commit/66a4c9a027991ff6c1fcc2830728b88de1afb2d8))
+
 # 1.0.0 (2024-1-23)
 
 
