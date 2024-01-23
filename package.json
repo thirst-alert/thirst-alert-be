@@ -9,7 +9,8 @@
     "dev": "nodemon src/index.js",
     "lint": "eslint --ext .js .",
     "test": "cross-env NODE_ENV=test tape src/test/**/*.js | faucet",
-    "commit": "npm run lint -- --fix && git-cz"
+    "commit": "npm run lint -- --fix && git-cz",
+		"semantic-release": "semantic-release"
   },
   "keywords": [],
   "author": "",
