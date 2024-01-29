@@ -1,3 +1,10 @@
+## [1.1.3-dev.1](https://github.com/thirst-alert/thirst-alert-be/compare/v1.1.2...v1.1.3-dev.1) (2024-1-29)
+
+
+### Bug Fixes
+
+* 🐛 added o to halloo ([5c1eb02](https://github.com/thirst-alert/thirst-alert-be/commit/5c1eb023c76db414650af6cebac690302f4f6ff7))
+
 ## [1.1.2](https://github.com/mellifluus/agri-be/compare/v1.1.1...v1.1.2) (2024-1-23)
 
 
