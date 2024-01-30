@@ -1,8 +1,8 @@
 /* eslint no-undef: OFF */
 
-db.auth(process.env.MONGO_USER, process.env.MONGO_PASSWORD)
+db.auth(process.env.MONGO_INITDB_ROOT_USERNAME, process.env.MONGO_INITDB_ROOT_PASSWORD)
 
-db.getSiblingDB(process.env.MONGO_DB)
+db.getSiblingDB(process.env.MONGO_INITDB_DATABASE)
 
 db.user.insertMany([
 	{

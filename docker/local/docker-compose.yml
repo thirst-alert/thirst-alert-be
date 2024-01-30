@@ -5,10 +5,8 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./mongo/init-scripts:/docker-entrypoint-initdb.d # for some reason, this field wants a path relative to the compose file
+      - ./mongo/init-scripts:/docker-entrypoint-initdb.d
     environment:
       - MONGO_INITDB_DATABASE=${MONGO_DB}
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
-    env_file:
-      - .env # ...and this field wants a path relative to where compose is run from
