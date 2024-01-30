@@ -6,7 +6,7 @@ db.getSiblingDB(process.env.MONGO_INITDB_DATABASE)
 
 db.user.insertMany([
 	{
-		username: 'Massi' ,
+		username: 'Massi',
 		email: 'massi@email.com',
 		password: '12345678',
 		role: 'admin',
@@ -14,11 +14,19 @@ db.user.insertMany([
 		updatedAt: new Date(),
 	},
 	{
-		username: 'Alsje' ,
+		username: 'Alsje',
 		email: 'alsje@email.com',
 		password: '12345678',
 		role: 'admin',
 		createdAt: new Date(),
 		updatedAt: new Date(),
-	}
+	},
+	{
+		username: 'Maya',
+		email: 'mayonaise@email.com',
+		password: '12345678',
+		role: 'admin',
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
 ])
