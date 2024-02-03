@@ -1,3 +1,10 @@
+# [1.2.0-dev.1](https://github.com/thirst-alert/thirst-alert-be/compare/v1.1.3...v1.2.0-dev.1) (2024-2-3)
+
+
+### Features
+
+* 🎸 added cloudbuild ([c15a864](https://github.com/thirst-alert/thirst-alert-be/commit/c15a8646bc38c3844ed51256e575307266161133))
+
 ## [1.1.3](https://github.com/thirst-alert/thirst-alert-be/compare/v1.1.2...v1.1.3) (2024-1-29)
 
 
