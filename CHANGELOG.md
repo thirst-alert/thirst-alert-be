@@ -1,3 +1,10 @@
+# [1.2.0-dev.3](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.2...v1.2.0-dev.3) (2024-2-7)
+
+
+### Bug Fixes
+
+* maybe fix cloudbuild ([0ad4742](https://github.com/thirst-alert/thirst-alert-be/commit/0ad4742ec2bb5c8c230e84cc5339e53635aac70a))
+
 # [1.2.0-dev.2](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.1...v1.2.0-dev.2) (2024-2-7)
 
 
