@@ -1,3 +1,10 @@
+# [1.2.0-dev.4](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.3...v1.2.0-dev.4) (2024-2-7)
+
+
+### Bug Fixes
+
+* THIS SHOULD FIX CLOUDBUILD ([98a391e](https://github.com/thirst-alert/thirst-alert-be/commit/98a391e90cc71e82e1e773708f3fb79696050ee1))
+
 # [1.2.0-dev.3](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.2...v1.2.0-dev.3) (2024-2-7)
 
 
