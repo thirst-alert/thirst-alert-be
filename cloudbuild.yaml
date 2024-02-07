@@ -1,12 +1,5 @@
 timeout: 300s
 steps:
-  - name: "gcr.io/cloud-builders/gcloud"
-    entrypoint: "bash"
-    args:
-      - "-c"
-      - |
-        # Install the specified version of gcloud
-        curl -sSL https://sdk.cloud.google.com | bash -s -- --disable-prompts --install-dir=/builder/google-cloud-sdk --version=455.0.0
   - name: gcr.io/cloud-builders/git
     entrypoint: "sh"
     args:
