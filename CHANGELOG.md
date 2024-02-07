@@ -1,3 +1,10 @@
+# [1.2.0-dev.2](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.1...v1.2.0-dev.2) (2024-2-7)
+
+
+### Bug Fixes
+
+* maybe fix cloudbuild quota issue ([990afff](https://github.com/thirst-alert/thirst-alert-be/commit/990afffc2af9a8986e0f11ce2a69d30aa8a9563e))
+
 # [1.2.0-dev.1](https://github.com/thirst-alert/thirst-alert-be/compare/v1.1.3...v1.2.0-dev.1) (2024-2-3)
 
 
