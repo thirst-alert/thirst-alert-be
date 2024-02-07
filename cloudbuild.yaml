@@ -13,6 +13,6 @@ steps:
     args: ["ci"]
   - name: "gcr.io/cloud-builders/docker"
     args:
-      ["build", "-t", "europe-west3-docker.pkg.dev/$PROJECT_ID/thirst-alert-be/backend:$TAG_NAME", "."]
+      ["build", "-t", "europe-west1-docker.pkg.dev/$PROJECT_ID/thirst-alert-be/backend:$TAG_NAME", "."]
 images:
-  - "europe-west3-docker.pkg.dev/$PROJECT_ID/thirst-alert-be/backend:$TAG_NAME"
+  - "europe-west1-docker.pkg.dev/$PROJECT_ID/thirst-alert-be/backend:$TAG_NAME"
