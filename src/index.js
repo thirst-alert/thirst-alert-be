@@ -7,7 +7,9 @@ const { server, mongo } = require('./config')
 
 const app = express()
 
-mongoose.connect(mongo.uri)
+mongoose.connect(mongo.uri, {
+	ssl: false
+})
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'))
 mongoose.connection.once('open', () => {
 	console.log('Connected to MongoDB')
