@@ -1,3 +1,10 @@
+# [1.2.0-dev.5](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.4...v1.2.0-dev.5) (2024-2-9)
+
+
+### Features
+
+* 🎸 temporarily disabled ssl connection for mongodb ([5d5dd8a](https://github.com/thirst-alert/thirst-alert-be/commit/5d5dd8ade95f18022df2aa16c4881e0dbc7d837e))
+
 # [1.2.0-dev.4](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.3...v1.2.0-dev.4) (2024-2-7)
 
 
