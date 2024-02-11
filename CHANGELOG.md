@@ -1,3 +1,10 @@
+# [1.2.0-dev.7](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.6...v1.2.0-dev.7) (2024-2-11)
+
+
+### Features
+
+* 🎸 testing argocd-image-updater ([1589f73](https://github.com/thirst-alert/thirst-alert-be/commit/1589f73c3691df6b106642bb51fb39ba941699b9))
+
 # [1.2.0-dev.6](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.5...v1.2.0-dev.6) (2024-2-11)
 
 
