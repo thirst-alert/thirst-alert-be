@@ -19,7 +19,7 @@ app.use(express.json())
 app.use(reqLogger)
 
 app.get('/', (_req, res) => {
-	res.send('hallooo')
+	res.send('jou ma se poes!')
 })
 
 const router = require('express').Router()
