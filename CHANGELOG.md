@@ -1,3 +1,10 @@
+# [1.2.0-dev.8](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.7...v1.2.0-dev.8) (2024-2-13)
+
+
+### Features
+
+* 🎸 authentication; JWT & Passport Strategy ([7200d3d](https://github.com/thirst-alert/thirst-alert-be/commit/7200d3d5040f683abead170660f3da32b911f2fa))
+
 # [1.2.0-dev.7](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.6...v1.2.0-dev.7) (2024-2-11)
 
 
