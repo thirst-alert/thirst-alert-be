@@ -5,6 +5,7 @@ const userSchema = new Schema({
 	username: String,
 	email: String,
 	password: String,
+	refreshToken: String,
 	role: String,
 	createdAt: Date,
 	updatedAt: Date

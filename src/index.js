@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const passport = require('passport')
 // const routes = require('./routes/router')
 const reqLogger = require('./middlewares/reqLogger')
 const { noPathHandler, errorHandler } = require('./middlewares/errors')
@@ -17,6 +18,8 @@ mongoose.connection.once('open', () => {
 
 app.use(express.json())
 app.use(reqLogger)
+app.use(passport.initialize())
+require('./middlewares/passport-config')(passport)
 
 app.get('/', (_req, res) => {
 	res.send('jou ma se poes!')
