@@ -1,4 +1,5 @@
 const Ajv = require('ajv')
+const { authenticate } = require('../middlewares/passport-config')
 const logger = require('./logger')
 
 function bindCustomRegistrationToRouter(router) {
@@ -72,9 +73,10 @@ function generateSchemaValidators(schema) {
 }
 
 function registerRoute(definition) {
-	const { method, path, handler, schema = {} } = definition
+	const { method, path, handler, schema = {}, requiresAuth = false } = definition
 
 	const handlers = [
+		...requiresAuth ? [authenticate] : [],
 		...generateSchemaValidators(schema),
 		handler
 	]

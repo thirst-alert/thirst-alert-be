@@ -3,7 +3,7 @@ const User = require('../../entities/user')
 
 module.exports.post = {
 	method: 'POST',
-	path: '/register',
+	path: '/auth/register',
 	schema: {
 		body: {
 			type: 'object',
@@ -19,11 +19,11 @@ module.exports.post = {
 			},
 		},
 	},
-	handler: async (req, res, _next) => {
+	handler: async (req, res, next) => {
 		const { username, password } = req.body
 		const existingUser = await User.findOne({ username })
 		if (existingUser) {
-			return res.status(400).json({ message: 'Please choose a different name.'})
+			return next(new StatusError('Please choose a different name', 409))
 		}
 		const hashedPassword = await bcrypt.hash(password, 10)
 		const newUser = new User({
@@ -33,6 +33,6 @@ module.exports.post = {
 			updatedAt: new Date(),
 		})
 		const savedUser = await newUser.save()
-		res.status(201).json({ message: 'User registered successfully', user: savedUser })
+		res.status(201).send({ message: 'User registered successfully', user: savedUser.toJWTPayload() })
 	}
 }

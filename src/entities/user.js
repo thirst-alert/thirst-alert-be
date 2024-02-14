@@ -3,12 +3,19 @@ const { Schema } = mongoose
 
 const userSchema = new Schema({
 	username: String,
-	email: String,
 	password: String,
-	refreshToken: String,
-	role: String,
 	createdAt: Date,
 	updatedAt: Date
-}, { collection: 'user' })
+}, {
+	collection: 'user',
+	methods: {
+		toJWTPayload() {
+			return {
+				id: this._id,
+				username: this.username
+			}
+		}
+	}
+})
 
-module.exports = mongoose.model('user', userSchema) 
+module.exports = mongoose.model('user', userSchema)

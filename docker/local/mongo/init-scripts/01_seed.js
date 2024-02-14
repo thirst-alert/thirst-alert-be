@@ -4,28 +4,23 @@ db.auth(process.env.MONGO_INITDB_ROOT_USERNAME, process.env.MONGO_INITDB_ROOT_PA
 
 db.getSiblingDB(process.env.MONGO_INITDB_DATABASE)
 
+// passwords are bcrypt hashes of usernames
 db.user.insertMany([
 	{
 		username: 'Massi',
-		email: 'massi@email.com',
-		password: '12345678',
-		role: 'admin',
+		password: '$2a$10$McZtdtXGQ4LAo.hopLtsnudAxSi1k8UZwMgDM7Tv/3xSGpXu0EQTS',
 		createdAt: new Date(),
 		updatedAt: new Date(),
 	},
 	{
 		username: 'Alsje',
-		email: 'alsje@email.com',
-		password: '12345678',
-		role: 'admin',
+		password: '$2a$10$S2iym2rCli1ms1i4O/REnutBQA8DqXPi8.0AAEWe4rW.Z7nqLe.3q',
 		createdAt: new Date(),
 		updatedAt: new Date(),
 	},
 	{
 		username: 'Maya',
-		email: 'mayonaise@email.com',
-		password: '12345678',
-		role: 'admin',
+		password: '$2a$10$1A6BxjOnlutyJ5T01LvF0.JVBHefvpRRnKhqityNpjKXYIYdqw9C2',
 		createdAt: new Date(),
 		updatedAt: new Date(),
 	},

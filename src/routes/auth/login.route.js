@@ -2,10 +2,11 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
 const User = require('../../entities/user')
+const RefreshToken = require('../../entities/refreshToken')
 
 module.exports.post = {
 	method: 'POST',
-	path: '/login',
+	path: '/auth/login',
 	schema: {
 		body: {
 			type: 'object',
@@ -21,30 +22,39 @@ module.exports.post = {
 			},
 		},
 	},
-	handler: async (req, res, _next) => {
+	handler: async (req, res, next) => {
 		const { username, password } = req.body
 
 		const user = await User.findOne({ username })
 		if (!user) {
-			return res.status(400).json({ message: 'Invalid username or password' })
+			return next(new StatusError('User', 400))
 		}
 
 		const passwordMatch = await bcrypt.compare(password, user.password)
 		if (!passwordMatch) {
-			return res.status(400).json({ message: 'Invalid username or password' })
+			return next(new StatusError('User', 400))
 		}
-		
-		const refreshToken = crypto.randomBytes(64).toString('hex')
-		user.refreshToken = refreshToken
-		await user.save()
+
+		await RefreshToken.deleteMany({ owner: user._id }) // delete refresh tokens for this user
+		const refreshToken = new RefreshToken({
+			token: crypto.randomBytes(64).toString('hex'),
+			owner: user._id,
+			expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 days
+		})
+		await refreshToken.save()
 
 		const token = jwt.sign(
-			{ username: user.username },
+			user.toJWTPayload(),
 			process.env.JWT_SECRET,
 			{
 				expiresIn: '1h',
 			}
 		)
-		res.json({ message: 'Logged in successfully', token, refreshToken })
+		return res.status(200).send({
+			message: 'Logged in successfully',
+			token,
+			refreshToken: refreshToken.token,
+			user: user.toJWTPayload()
+		})
 	},
 }
