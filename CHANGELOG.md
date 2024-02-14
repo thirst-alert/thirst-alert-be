@@ -1,3 +1,10 @@
+# [1.2.0-dev.9](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.8...v1.2.0-dev.9) (2024-2-14)
+
+
+### Features
+
+* 🎸 final auth setup ([7ede9e2](https://github.com/thirst-alert/thirst-alert-be/commit/7ede9e22be82962b3a3c51fe9531f65f3c451b08))
+
 # [1.2.0-dev.8](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.7...v1.2.0-dev.8) (2024-2-13)
 
 
