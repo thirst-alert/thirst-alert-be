@@ -1,3 +1,11 @@
+# [1.2.0-dev.10](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.9...v1.2.0-dev.10) (2024-2-15)
+
+
+### Features
+
+* 🎸 temp measurement route ([9e7ff2c](https://github.com/thirst-alert/thirst-alert-be/commit/9e7ff2c786337efa780475634ab97615ef17e529))
+* 🎸 temp measurement route try two lol ([43a3f0e](https://github.com/thirst-alert/thirst-alert-be/commit/43a3f0e200b35fdc01623e86cbff67acdf2339db))
+
 # [1.2.0-dev.9](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.8...v1.2.0-dev.9) (2024-2-14)
 
 
