@@ -5,16 +5,16 @@ const measurementSchema = new Schema({
 	moisture: Number,
 	temperature: Number,
 	createdAt: Date,
-  metadata: {
-    sensorId: String
-  }
+	metadata: {
+		sensorId: String
+	}
 }, {
 	collection: 'measurement',
-  timeseries: {
-    timeField: 'createdAt',
-    metaField: 'metadata',
-    granularity: 'minutes',
-  }
+	timeseries: {
+		timeField: 'createdAt',
+		metaField: 'metadata',
+		granularity: 'minutes',
+	}
 })
 
 module.exports = mongoose.model('measurement', measurementSchema)
