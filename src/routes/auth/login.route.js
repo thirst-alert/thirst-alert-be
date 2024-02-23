@@ -11,9 +11,9 @@ module.exports.post = {
 		body: {
 			type: 'object',
 			additionalProperties: false,
-			required: ['username', 'password'],
+			required: ['identity', 'password'],
 			properties: {
-				username: {
+				identity: {
 					type: 'string',
 				},
 				password: {
@@ -23,17 +23,14 @@ module.exports.post = {
 		},
 	},
 	handler: async (req, res, next) => {
-		const { username, password } = req.body
+		const { identity, password } = req.body
 
-		const user = await User.findOne({ username })
-		if (!user) {
-			return next(new StatusError('User', 400))
-		}
+		const user = await User.findOne({ $or: [{ username: identity }, { email: identity }] })
 
+		if (!user) return next(new StatusError('User', 404))
+		if (!user.active) return next(new StatusError('Email not verified', 403))
 		const passwordMatch = await bcrypt.compare(password, user.password)
-		if (!passwordMatch) {
-			return next(new StatusError('User', 400))
-		}
+		if (!passwordMatch) return next(new StatusError('User', 404))
 
 		await RefreshToken.deleteMany({ owner: user._id }) // delete refresh tokens for this user
 		const refreshToken = new RefreshToken({

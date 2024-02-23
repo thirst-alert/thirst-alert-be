@@ -3,9 +3,20 @@ const { Schema } = mongoose
 
 const userSchema = new Schema({
 	username: String,
+	email: String,
 	password: String,
-	createdAt: Date,
-	updatedAt: Date
+	active: {
+		type: Boolean,
+		default: false
+	},
+	createdAt: {
+		type: Date,
+		default: new Date()
+	},
+	updatedAt: {
+		type: Date,
+		default: new Date()
+	}
 }, {
 	collection: 'user',
 	methods: {
