@@ -1,3 +1,10 @@
+# [1.2.0-dev.11](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.10...v1.2.0-dev.11) (2024-2-26)
+
+
+### Features
+
+* 🎸 added email verification logic ([830131a](https://github.com/thirst-alert/thirst-alert-be/commit/830131a327577c57cf58e9872e6f44653199f879))
+
 # [1.2.0-dev.10](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.9...v1.2.0-dev.10) (2024-2-15)
 
 
