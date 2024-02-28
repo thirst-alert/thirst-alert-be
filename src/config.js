@@ -9,7 +9,7 @@ module.exports = {
 	},
 	mongo: {
 		uri: process.env.NODE_ENV === 'local'
-			? `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/${process.env.MONGO_DB}`
+			? `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/${process.env.MONGO_DB}?replicaSet=rs0`
 			: process.env.MONGO_URI,
 	},
 	mailer: mailer.createTransport({
