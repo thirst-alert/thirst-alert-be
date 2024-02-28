@@ -4,6 +4,22 @@ services:
     image: mongo:6-jammy
     ports:
       - "27017:27017"
+    entrypoint:
+      - bash
+      - -c
+      - |
+        openssl rand -base64 756 > /data/replica.key
+        chmod 400 /data/replica.key
+        chown 999:999 /data/replica.key
+        exec docker-entrypoint.sh $$@
+    command: "mongod --bind_ip_all --replSet rs0 --keyFile /data/replica.key --port 27017 --quiet --logpath /dev/null"
+    healthcheck:
+      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'localhost:27017'}]}) }" | mongosh -u ${MONGO_USER} -p ${MONGO_PASSWORD} --port 27017
+      interval: 5s
+      timeout: 30s
+      start_period: 0s
+      start_interval: 1s
+      retries: 30
     volumes:
       - ./mongo/init-scripts:/docker-entrypoint-initdb.d
     environment:
