@@ -1,6 +1,5 @@
 const bcrypt = require('bcryptjs')
 const { mailer } = require('../../config')
-const { generateVerifyEmail } = require('../../html/verifyEmail')
 const User = require('../../entities/user')
 const VerifyEmailToken = require('../../entities/verifyEmailToken')
 
@@ -61,8 +60,12 @@ module.exports.post = {
 
 			await mailer.sendMail({
 				to: email,
-				subject: 'Hi hello',
-				html: generateVerifyEmail(verifyEmailToken.token)
+				subject: 'Thirst Alert - Verify your email address',
+				template: 'verifyEmail',
+				context: {
+					username: newUser.username,
+					token: verifyEmailToken.token.split('')
+				}
 			})
 
 			res.status(201).send({ message: 'User registered successfully', user: newUser.toJWTPayload() })

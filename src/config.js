@@ -1,6 +1,32 @@
 const mailer = require('nodemailer')
+const hbs = require('nodemailer-express-handlebars')
+const path = require('path')
 
 require('dotenv').config()
+
+const transport = mailer.createTransport({
+	host: 'smtp.gmail.com',
+	port: 465,
+	secure: true,
+	auth: {
+		type: 'OAuth2',
+		user: 'noreply@thirst-alert.com',
+		clientId: process.env.MAILER_CLIENT_ID,
+		clientSecret: process.env.MAILER_CLIENT_SECRET,
+		refreshToken: process.env.MAILER_REFRESH_TOKEN,
+		accessToken: process.env.MAILER_ACCESS_TOKEN
+	},
+})
+
+const hbsOptions = {
+	viewEngine: {
+		partialsDir: path.resolve(__dirname, 'html'),
+		defaultLayout: false,
+	},
+	viewPath: path.resolve(__dirname, 'html')
+}
+
+transport.use('compile', hbs(hbsOptions))
 
 module.exports = {
 	server: {
@@ -12,17 +38,5 @@ module.exports = {
 			? `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/${process.env.MONGO_DB}?replicaSet=rs0`
 			: process.env.MONGO_URI,
 	},
-	mailer: mailer.createTransport({
-		host: 'smtp.gmail.com',
-		port: 465,
-		secure: true,
-		auth: {
-			type: 'OAuth2',
-			user: 'noreply@thirst-alert.com',
-			clientId: process.env.MAILER_CLIENT_ID,
-			clientSecret: process.env.MAILER_CLIENT_SECRET,
-			refreshToken: process.env.MAILER_REFRESH_TOKEN,
-			accessToken: process.env.MAILER_ACCESS_TOKEN
-		},
-	})
+	mailer: transport
 }
