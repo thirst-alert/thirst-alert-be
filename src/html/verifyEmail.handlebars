@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThirstAlert Email Verification</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #191A1F;
+      color: #FFFFFF;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .token-box {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: #0D6766;
+      border-radius: 5px;
+      text-align: center;
+      line-height: 40px;
+      margin-right: 5px;
+    }
+    .token {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .footer {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://lh3.googleusercontent.com/pw/AP1GczOJO715K7x4YEwiOBJPwevh4-lqA782kVwt8pHzjgbUSP4fJ392jcobF4jRiT8mQQk9ihedi6_IpMukOfuOTGIhkSU1w5UDovuGOzu-E3kcJJjQpLKIhHV2VrYP97FoltWfarSt7V7L0FmWNfp47UYvvpV2ZlmMbTeQ-w-MJpcn5YT7sddsEhn64PjdvDlcbJzEmOKqUbwtkhpucNeIPTSu7Ddpxx9vNvR--J3uaptJEtbchTwl76BVgFaG6bqcwOvJldW488dgGvJr1KMHCJ1UQuA1Kkuui4MXasHUguFcyypRPjzUWr0QU91hW_YJ-vNbW6hFN1f--Cn7tcBjnnMMU6r55tUGUsJXTE3a6QI_pZlgpV9mPwlxjJzGfBAq2DO2O_L55t2iqj8oMuk0mBWxl6wWYV-U7UUFSiTzZM1-TOKM_Rm4aBaXX6PR8IPiptcaLL9XxaAHHEgWrRN0GiQYVUZWup6vJDg9msZYNOYwQJA1W1-8nj8xF4o8SInQu4CsPFYK2ms_-hU39-w0wSpjk1nSmeupJn4JX3sxRJ7muqWwm0UWd1a6oq3X4ejSX6qwfqK_Fxe5SXO-82Gh_J_Beh6fZvGqvL333trIugnRRChuZHhPWNCH76z1EVC8k3xYAYq98KexkUGAjzBNWExQ6_ErodswinC5lI011DrG9hfFBf0QGVnxXTK29kd19fuG_dkk9S-qGUpSIRVZTrhQWT_oucNVTFYGgizlre5CFFL0DC7TekRrBvGQEyiZJywsiUYTEu0RvcMNJjViydFa7a3LtGW5OUbuBKmfjxYlosqWD-dXxYzbQezLQwuISq08IoiK0WjLniiQAp--pR0um8bByOe9goNYbApc-ZjORgQKPT_84A-oHKiwZLzlMgO46-5Qqjo5cXh7rEwaX-uhMg33qXbzuVjJqM2hHESZRTAyQ-rwbEPzE_dk=w193-h113-s-no-gm?authuser=0"/>
+    <p>Hey {{username}}! We're excited to have you on board. To complete your registration and ensure the security of your account, please verify your email address by entering the 6-digit code below into the app:</p>
+    <div>
+      {{#each token}}
+        <div class="token-box"><span class="token">{{this}}</span></div>
+      {{/each}}
+    </div>
+    <p>Please note that this code expires in 24 hours.</p>
+    <p>If you haven't registered for ThirstAlert, please disregard this email.</p>
+    <div class="footer">
+      <p>Best regards,<br>The ThirstAlert Team</p>
+    </div>
+  </div>
+</body>
+</html>
