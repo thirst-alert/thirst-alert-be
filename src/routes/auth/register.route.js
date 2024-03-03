@@ -70,7 +70,7 @@ module.exports.post = {
 
 			res.status(201).send({ message: 'User registered successfully', user: newUser.toJWTPayload() })
 		} catch (error) {
-			next(new StatusError('Failed to register user', 500))
+			next(new StatusError('Something went wrong while registering user', 500))
 		}
 	}
 }
@@ -100,7 +100,7 @@ module.exports.verify = {
 		const verifyEmailToken = await VerifyEmailToken.findOne({ token }).populate('owner')
 		if (!verifyEmailToken) return next(new StatusError('Invalid token', 400))
 		const user = verifyEmailToken.owner
-		if (user.email !== email) return next(new StatusError('Invalid email', 400))
+		if (user.email !== email) return next(new StatusError('Invalid token', 400))
 
 		await User.updateOne({ _id: user._id }, { active: true })
 		await VerifyEmailToken.deleteOne({ _id: verifyEmailToken._id })
