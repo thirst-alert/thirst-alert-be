@@ -46,7 +46,7 @@ jobs:
       - name: Lint
         run: npm run lint
       - name: Test
-        run: npm test
+        run: FORCE_COLOR=true JWT_SECRET=dummy npm test
       - name: Semantic release
         uses: ./.github/actions/create-release
         with:
