@@ -29,7 +29,7 @@ describe('POST /auth/refresh', () => {
 				refreshToken: '981d5edda9ec1c81d8f497e8a99b96864df9279529900eb67e951ece563b7b2dc4954295df4749ac983de9390368a7498f4e1ccdb5ef0cbfffc8206ac99870c5'
 			})
 			expect(res.status).toBe(403)
-			expect(res.body.error.message).toBe('Forbidden: Invalid refresh token')
+			expect(res.body.error.message).toBe('Invalid refresh token')
 		})
 
 		it('should error if token is not associated with username', async function() {
@@ -44,7 +44,7 @@ describe('POST /auth/refresh', () => {
 				refreshToken: refreshToken.token
 			})
 			expect(res.status).toBe(403)
-			expect(res.body.error.message).toBe('Forbidden: Invalid refresh token')
+			expect(res.body.error.message).toBe('Invalid refresh token')
 		})
 
 		it('should error if token is expired', async function() {
@@ -57,7 +57,7 @@ describe('POST /auth/refresh', () => {
 				refreshToken: refreshToken.token
 			})
 			expect(res.status).toBe(403)
-			expect(res.body.error.message).toBe('Forbidden: Refresh token expired')
+			expect(res.body.error.message).toBe('Refresh token expired')
 		})
 	})
 })

@@ -8,58 +8,25 @@ global.StatusError = class extends Error {
 }
 
 exports.noPathHandler = (_req, _res, next) =>
-	next(new StatusError('Path', 404))
+	next(new StatusError('Path not found', 404))
 
 exports.errorHandler = (err, _req, res, _next) => {
-	let message, status
 	if (err instanceof StatusError) {
-		message = err.message
-		status = err.status
-	} else if (process.env.ERR_VERBOSE === 'true') {
+		const { message, status } = err
+		logger.error(`${status} - ${message}`)
+		return res.status(status).send({
+			error: { message }
+		})
+	}
+	if (process.env.ERR_VERBOSE === 'true') {
 		logger.fatal(`Uncaught error: ${err.stack}`)
 		return res.status(500).send({
 			err: err.stack,
 		})
 	} else {
-		message = 'Something went wrong'
-		status = 500
+		logger.error('500 - Something went wrong')
+		return res.status(500).send({
+			error: { message: 'Something went wrong' }
+		})
 	}
-
-	switch (status) {
-	case 400:
-		message = `Bad request: ${message}`
-		break
-
-	case 401:
-		message = `Unauthorized: ${message}`
-		break
-
-	case 403:
-		message = `Forbidden: ${message}`
-		break
-
-	case 404:
-		message = `${message} not found`
-		break
-
-	case 409:
-		message = `Conflict: ${message}`
-		break
-
-	case 422:
-		message = `Unprocessable Entity: ${message}`
-		break
-
-	case 500:
-		message = `Internal Server Error: ${message}`
-		break
-
-	default:
-		break
-	}
-
-	logger.error(`${status} - ${message}`)
-	return res.status(status).send({
-		error: { message },
-	})
 }

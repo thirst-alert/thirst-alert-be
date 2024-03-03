@@ -27,10 +27,10 @@ module.exports.post = {
 
 		const user = await User.findOne({ $or: [{ username: identity }, { email: identity }] })
 
-		if (!user) return next(new StatusError('User', 404))
+		if (!user) return next(new StatusError('Invalid username/email or password', 404))
 		if (!user.active) return next(new StatusError('Email not verified', 403))
 		const passwordMatch = await bcrypt.compare(password, user.password)
-		if (!passwordMatch) return next(new StatusError('User', 404))
+		if (!passwordMatch) return next(new StatusError('Invalid username/email or password', 404))
 
 		await RefreshToken.deleteMany({ owner: user._id }) // delete refresh tokens for this user
 		const refreshToken = new RefreshToken({

@@ -73,7 +73,7 @@ describe('POST /auth/login', () => {
 				password: 'password'
 			})
 			expect(res.status).toBe(403)
-			expect(res.body.error.message).toBe('Forbidden: Email not verified')
+			expect(res.body.error.message).toBe('Email not verified')
 		})
 
 		it('should error if user doesnt exist', async function() {
@@ -82,7 +82,7 @@ describe('POST /auth/login', () => {
 				password: 'password'
 			})
 			expect(res.status).toBe(404)
-			expect(res.body.error.message).toBe('User not found')
+			expect(res.body.error.message).toBe('Invalid username/email or password')
 		})
 
 		it('should error if password is incorrect', async function() {
@@ -95,7 +95,7 @@ describe('POST /auth/login', () => {
 				password: 'password1'
 			})
 			expect(res.status).toBe(404)
-			expect(res.body.error.message).toBe('User not found')
+			expect(res.body.error.message).toBe('Invalid username/email or password')
 		})
 	})
 })

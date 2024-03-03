@@ -40,7 +40,7 @@ describe('POST /auth/verify', () => {
 				token: '123456'
 			})
 			expect(res.status).toBe(400)
-			expect(res.body.error.message).toBe('Bad request: Invalid token')
+			expect(res.body.error.message).toBe('Invalid token')
 		})
 
 		it('should error if token is not associated with email', async function() {
@@ -55,7 +55,7 @@ describe('POST /auth/verify', () => {
 				token: token.token
 			})
 			expect(res.status).toBe(400)
-			expect(res.body.error.message).toBe('Bad request: Invalid email')
+			expect(res.body.error.message).toBe('Invalid token')
 		})
 	})
 })

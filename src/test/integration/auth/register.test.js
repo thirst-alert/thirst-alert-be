@@ -44,6 +44,7 @@ describe('POST /auth/register', () => {
 				password: 'password'
 			})
 			expect(res.status).toBe(409)
+			expect(res.body.error.message).toBe('Username already in use')
 		})
 
 		it('emails should be unique', async function() {
@@ -56,6 +57,7 @@ describe('POST /auth/register', () => {
 				password: 'password'
 			})
 			expect(res.status).toBe(409)
+			expect(res.body.error.message).toBe('Email already in use')
 		})
 	})
 })
