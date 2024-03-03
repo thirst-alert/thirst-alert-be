@@ -16,6 +16,12 @@ module.exports = {
 			'parserOptions': {
 				'sourceType': 'script'
 			}
+		},
+		{
+			'files': ['*.test.js'],
+			'rules': {
+				'no-undef': 'off'
+			}
 		}
 	],
 	'parserOptions': {
