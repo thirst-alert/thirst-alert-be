@@ -27,7 +27,6 @@ module.exports.post = {
 		const measurement = new Measurement({
 			temperature,
 			moisture,
-			createdAt: new Date(),
 			metadata: {
 				sensorId
 			}

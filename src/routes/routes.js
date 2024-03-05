@@ -9,4 +9,5 @@ module.exports.attachRoutes = (router) => {
 	router.registerRoute(require('./auth/login.route').post)
 	router.registerRoute(require('./auth/refresh.route').post)
 	router.registerRoute(require('./measurement/post.route').post)
+	router.registerRoute(require('./measurement/get.route').get)
 }
