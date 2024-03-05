@@ -82,25 +82,24 @@ module.exports.verify = {
 		body: {
 			type: 'object',
 			additionalProperties: false,
-			required: ['token', 'email'],
+			required: ['token', 'identity'],
 			properties: {
 				token: {
 					type: 'string',
 				},
-				email: {
+				identity: {
 					type: 'string',
-					format: 'email',
 				},
 			},
 		},
 	},
 	handler: async (req, res, next) => {
-		const { token, email } = req.body
+		const { token, identity } = req.body
 
 		const verifyEmailToken = await VerifyEmailToken.findOne({ token }).populate('owner')
 		if (!verifyEmailToken) return next(new StatusError('Invalid token', 400))
 		const user = verifyEmailToken.owner
-		if (user.email !== email) return next(new StatusError('Invalid token', 400))
+		if (user.email !== identity && user.username !== identity) return next(new StatusError('Invalid token', 400))
 
 		await User.updateOne({ _id: user._id }, { active: true })
 		await VerifyEmailToken.deleteOne({ _id: verifyEmailToken._id })
