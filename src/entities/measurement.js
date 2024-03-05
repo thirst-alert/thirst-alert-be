@@ -18,16 +18,16 @@ const measurementSchema = new Schema({
 		metaField: 'metadata',
 		granularity: 'seconds',
 	},
-	expireAfterSeconds: 10
+	// expireAfterSeconds: 10
 })
 
-// measurementSchema.index( {'createdAt': 1 }, {
-//   partialFilterExpression: {
-//     'metadata.sensorId': { '$eq': '1234567890' }
-//   },
-//   expireAfterSeconds: 60,
-//   name: 'ttlindex',
-//   background: true
-// })
+measurementSchema.index( {'createdAt': 1 }, {
+  partialFilterExpression: {
+    'metadata.sensorId': { '$exists': true }
+  },
+  expireAfterSeconds: 60,
+  name: 'ttlindex',
+  background: true
+})
 
 module.exports = mongoose.model('measurement', measurementSchema)

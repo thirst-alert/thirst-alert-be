@@ -1,5 +1,6 @@
 describe('TTL', () => {
 	it('should delete expired measurements', async function() {
+    await new Promise(resolve => setTimeout(resolve, 5000))
 		await global.dbConnection.models.measurement.create({
 			temperature: 1,
 			moisture: 1,
