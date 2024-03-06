@@ -1,3 +1,10 @@
+# [1.2.0-dev.12](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.11...v1.2.0-dev.12) (2024-3-6)
+
+
+### Features
+
+* 🎸 Need to release verifyEmail / updated verify route+test ([e213db0](https://github.com/thirst-alert/thirst-alert-be/commit/e213db0edff567a29903510cb6d04f8660a17de7))
+
 # [1.2.0-dev.11](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.10...v1.2.0-dev.11) (2024-2-26)
 
 
