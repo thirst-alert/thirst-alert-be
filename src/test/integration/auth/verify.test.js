@@ -6,24 +6,16 @@ afterEach(async () => {
 })
 
 describe('POST /auth/verify', () => {
-	describe('Schema validation', () => {
-		it('should validate email format correctly', async function() {
-			const res = await request(global.app).post('/auth/verify').send({
-				email: 'test',
-				token: '123456'
-			})
-			expect(res.status).toBe(422)
-			expect(res.body.result[0].message).toBe('must match format "email"')
-			expect(res.body.result[0].params.format).toBe('email')
-		})
-	})
+	// describe('Schema validation', () => {
+		
+	// })
 	describe('Logic', () => {
 		it('should activate User and delete VerifyEmailToken', async function() {
 			const newUser = await db.createDummyUser()
 			expect(newUser.active).toBe(false)
 			await db.createDummyVerifyEmailToken(newUser._id)
 			const res = await request(global.app).post('/auth/verify').send({
-				email: 'test@email.com',
+				identity: 'test@email.com',
 				token: '123456'
 			})
 			expect(res.status).toBe(200)
@@ -34,9 +26,30 @@ describe('POST /auth/verify', () => {
 			expect(verifyEmailToken).toBeNull()
 		})
 
+		it('should also work with userName', async function () {
+			const newUser = await db.createDummyUser()
+			expect(newUser.active).toBe(false)
+			await db.createDummyVerifyEmailToken(newUser._id)
+			const res = await request(global.app).post('/auth/verify').send({
+				identity: 'test',
+				token: '123456',
+			})
+			expect(res.status).toBe(200)
+			expect(res.body.message).toBe('Email verified successfully')
+			const user = await global.dbConnection.models.user.findOne({
+				username: 'test',
+			})
+			expect(user.active).toBe(true)
+			const verifyEmailToken =
+				await global.dbConnection.models.verifyEmailToken.findOne({
+					owner: user._id,
+				})
+			expect(verifyEmailToken).toBeNull()
+		})
+
 		it('should error if token doesnt exist', async function() {
 			const res = await request(global.app).post('/auth/verify').send({
-				email: 'test@email.com',
+				identity: 'test@email.com',
 				token: '123456'
 			})
 			expect(res.status).toBe(400)
@@ -51,7 +64,7 @@ describe('POST /auth/verify', () => {
 			})
 			const token = await db.createDummyVerifyEmailToken(user1._id)
 			const res = await request(global.app).post('/auth/verify').send({
-				email: user2.email,
+				identity: user2.email,
 				token: token.token
 			})
 			expect(res.status).toBe(400)
