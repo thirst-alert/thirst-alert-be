@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
 const User = require('../../entities/user')
 const RefreshToken = require('../../entities/refreshToken')
@@ -29,8 +28,7 @@ module.exports.post = {
 
 		if (!user) return next(new StatusError('Invalid username/email or password', 404))
 		if (!user.active) return next(new StatusError('Email not verified', 403))
-		const passwordMatch = await bcrypt.compare(password, user.password)
-		if (!passwordMatch) return next(new StatusError('Invalid username/email or password', 404))
+		if (!user.comparePassword(password)) return next(new StatusError('Invalid username/email or password', 404))
 
 		await RefreshToken.deleteMany({ owner: user._id }) // delete refresh tokens for this user
 		const refreshToken = new RefreshToken({

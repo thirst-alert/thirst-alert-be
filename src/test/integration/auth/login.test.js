@@ -1,16 +1,9 @@
 const request = require('supertest')
-const bcrypt = require('bcryptjs')
 const { db } = require('../../helpers')
-
-beforeAll(async () => {
-	passwordHash = await bcrypt.hash('password', 10)
-})
 
 afterEach(async () => {
 	await db.dropCollections()
 })
-
-let passwordHash = ''
 
 describe('POST /auth/login', () => {
 	// describe('Schema validation', () => {
@@ -18,7 +11,6 @@ describe('POST /auth/login', () => {
 	describe('Logic', () => {
 		it('should create a RefreshToken and return token, refresh token, and user', async function() {
 			const newUser = await db.createDummyUser({
-				password: passwordHash,
 				active: true
 			})
 			const res = await request(global.app).post('/auth/login').send({
@@ -32,6 +24,7 @@ describe('POST /auth/login', () => {
 			expect(res.body.user).toBeDefined()
 			expect(res.body.user).toStrictEqual({
 				username: newUser.username,
+				email: newUser.email,
 				id: newUser._id.toString()
 			})
 			expect(JSON.parse(Buffer.from(res.body.token.split('.')[1], 'base64').toString('ascii')).username).toBe(newUser.username)
@@ -42,7 +35,6 @@ describe('POST /auth/login', () => {
 
 		it('should also work with email', async function() {
 			const newUser = await db.createDummyUser({
-				password: passwordHash,
 				active: true
 			})
 			const res = await request(global.app).post('/auth/login').send({
@@ -56,6 +48,7 @@ describe('POST /auth/login', () => {
 			expect(res.body.user).toBeDefined()
 			expect(res.body.user).toStrictEqual({
 				username: newUser.username,
+				email: newUser.email,
 				id: newUser._id.toString()
 			})
 			expect(JSON.parse(Buffer.from(res.body.token.split('.')[1], 'base64').toString('ascii')).username).toBe(newUser.username)
@@ -65,9 +58,7 @@ describe('POST /auth/login', () => {
 		})
 
 		it('should not allow unverified users to login', async function() {
-			const newUser = await db.createDummyUser({
-				password: passwordHash,
-			})
+			const newUser = await db.createDummyUser()
 			const res = await request(global.app).post('/auth/login').send({
 				identity: newUser.username,
 				password: 'password'
@@ -87,7 +78,6 @@ describe('POST /auth/login', () => {
 
 		it('should error if password is incorrect', async function() {
 			const newUser = await db.createDummyUser({
-				password: passwordHash,
 				active: true
 			})
 			const res = await request(global.app).post('/auth/login').send({

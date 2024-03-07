@@ -1,4 +1,3 @@
-const bcrypt = require('bcryptjs')
 const { mailer } = require('../../config')
 const User = require('../../entities/user')
 const VerifyEmailToken = require('../../entities/verifyEmailToken')
@@ -41,8 +40,6 @@ module.exports.post = {
 		if (existingUsername) return next(new StatusError('Username already in use', 409))
 		if (existingEmail) return next(new StatusError('Email already in use', 409))
 
-		const hashedPassword = await bcrypt.hash(password, 10)
-
 		try {
 			// probably should be a transaction, but mongo support transactions only for replica sets.
 			// this could fail at any point, and data could be inconsistent
@@ -50,7 +47,7 @@ module.exports.post = {
 			const newUser = await User.create({
 				username,
 				email,
-				password: hashedPassword,
+				password
 			})
 
 			const verifyEmailToken = await VerifyEmailToken.create({
