@@ -1,3 +1,6 @@
+const jwt = require('jsonwebtoken')
+const { agent } = require('supertest')
+
 module.exports = {
 	db: {
 		dropCollections: () => global.dbConnection.db.dropDatabase(),
@@ -18,5 +21,16 @@ module.exports = {
 			expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
 			...overrides
 		})
+	},
+	authenticatedAgent: (user) => {
+		const token = jwt.sign(
+			user.toJWTPayload(),
+			process.env.JWT_SECRET,
+			{
+				expiresIn: '1h',
+			}
+		)
+		const authAgent = agent(global.app)
+		return authAgent.auth(token, { type: 'bearer' })
 	}
 }
