@@ -1,3 +1,10 @@
+# [1.2.0-dev.13](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.12...v1.2.0-dev.13) (2024-03-07)
+
+
+### Features
+
+* 🎸 added user settings routes ([a21ad7e](https://github.com/thirst-alert/thirst-alert-be/commit/a21ad7e664441f575cb7a21677ea9e257d161338))
+
 # [1.2.0-dev.12](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.11...v1.2.0-dev.12) (2024-3-6)
 
 
