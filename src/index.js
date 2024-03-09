@@ -1,12 +1,18 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const passport = require('passport')
+const path = require('path')
+const handlebars = require('express-handlebars')
 const { strategy } = require('./middlewares/passport-config')
 const reqLogger = require('./middlewares/reqLogger')
 const { noPathHandler, errorHandler } = require('./middlewares/errors')
 const { server, mongo } = require('./config')
 
 const app = express()
+app.set('view engine', 'handlebars')
+app.engine('handlebars', handlebars.engine({ defaultLayout: false }))
+app.set('views', path.resolve(__dirname, 'html', 'views'))
+
 passport.use(strategy)
 
 mongoose.connect(mongo.uri, {

@@ -20,10 +20,10 @@ const transport = mailer.createTransport({
 
 const hbsOptions = {
 	viewEngine: {
-		partialsDir: path.resolve(__dirname, 'html'),
+		partialsDir: path.resolve(__dirname, 'html', 'emails'),
 		defaultLayout: false,
 	},
-	viewPath: path.resolve(__dirname, 'html')
+	viewPath: path.resolve(__dirname, 'html', 'emails')
 }
 
 transport.use('compile', hbs(hbsOptions))
