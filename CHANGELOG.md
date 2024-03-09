@@ -1,3 +1,10 @@
+# [1.2.0-dev.14](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.13...v1.2.0-dev.14) (2024-03-09)
+
+
+### Features
+
+* 🎸 added password reset flow ([47bd7d9](https://github.com/thirst-alert/thirst-alert-be/commit/47bd7d98e2f80637b539941893bffda341f57cfa))
+
 # [1.2.0-dev.13](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0-dev.12...v1.2.0-dev.13) (2024-03-07)
 
 
