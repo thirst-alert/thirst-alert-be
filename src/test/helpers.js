@@ -20,7 +20,11 @@ module.exports = {
 			owner: userId,
 			expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
 			...overrides
+		}),
+		createDummyResetPasswordToken: (userId) => global.dbConnection.models.resetPasswordToken.create({
+			owner: userId
 		})
+
 	},
 	authenticatedAgent: (user) => {
 		const token = jwt.sign(
