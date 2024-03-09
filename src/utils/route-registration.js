@@ -1,4 +1,6 @@
 const Ajv = require('ajv')
+const addFormats = require('ajv-formats')
+const { authenticate } = require('../middlewares/passport-config')
 const logger = require('./logger')
 
 function bindCustomRegistrationToRouter(router) {
@@ -12,6 +14,7 @@ function generateSchemaValidators(schema) {
 
 	// TODO: allow ajv options in schema and load them up here if they're present in the route schema
 	const ajv = new Ajv()
+	addFormats(ajv)
 	if (schema.querystring) {
 		const validate = ajv.compile(schema.querystring)
 		validators.push(function prevalidationQuerystringHandler (req, res, next) {
@@ -72,9 +75,10 @@ function generateSchemaValidators(schema) {
 }
 
 function registerRoute(definition) {
-	const { method, path, handler, schema = {} } = definition
+	const { method, path, handler, schema = {}, requiresAuth = false } = definition
 
 	const handlers = [
+		...requiresAuth ? [authenticate] : [],
 		...generateSchemaValidators(schema),
 		handler
 	]

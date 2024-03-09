@@ -1,0 +1,18 @@
+timeout: 300s
+steps:
+  - name: gcr.io/cloud-builders/git
+    entrypoint: "sh"
+    args:
+      - "-c"
+      - |
+        git fetch --unshallow
+        git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+        git fetch origin
+        echo $(git rev-parse --abbrev-ref HEAD)
+  - name: "gcr.io/cloud-builders/npm"
+    args: ["ci"]
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      ["build", "-t", "europe-west1-docker.pkg.dev/$PROJECT_ID/thirst-alert-be/backend:$TAG_NAME", "."]
+images:
+  - "europe-west1-docker.pkg.dev/$PROJECT_ID/thirst-alert-be/backend:$TAG_NAME"
