@@ -13,5 +13,10 @@ module.exports.attachRoutes = (router) => {
 	router.registerRoute(require('./user/reset-password.route').post)
 	router.registerRoute(require('./user/reset-password.route').patch)
 	router.registerRoute(require('./user/delete.route').delete)
+	router.registerRoute(require('./sensor/get.route').getAll)
+	router.registerRoute(require('./sensor/get.route').getOne)
+	router.registerRoute(require('./sensor/post.route').post)
+	router.registerRoute(require('./sensor/patch.route').patch)
+	router.registerRoute(require('./sensor/delete.route').delete)
 	router.registerRoute(require('./measurement/post.route').post)
 }
