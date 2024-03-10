@@ -23,8 +23,12 @@ module.exports = {
 		}),
 		createDummyResetPasswordToken: (userId) => global.dbConnection.models.resetPasswordToken.create({
 			owner: userId
-		})
-
+		}),
+		createDummySensor: (userId, overrides = {}) => global.dbConnection.models.sensor.create({
+			name: 'test',
+			owner: userId,
+			...overrides
+		}),
 	},
 	authenticatedAgent: (user) => {
 		const token = jwt.sign(
