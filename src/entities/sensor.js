@@ -4,6 +4,9 @@ const { Schema } = mongoose
 const sensorSchema = new Schema({
 	name: {
 		type: String,
+		minlength: 1,
+		maxlength: 32,
+		trim: true,
 		required: true
 	},
 	owner: {
