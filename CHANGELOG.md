@@ -1,3 +1,10 @@
+# [1.3.0-dev.2](https://github.com/thirst-alert/thirst-alert-be/compare/v1.3.0-dev.1...v1.3.0-dev.2) (2024-03-11)
+
+
+### Features
+
+* 🎸 added measurement routes ([95b0c66](https://github.com/thirst-alert/thirst-alert-be/commit/95b0c664676d9f08313bc0582de4bc86f69ba499))
+
 # [1.3.0-dev.1](https://github.com/thirst-alert/thirst-alert-be/compare/v1.2.0...v1.3.0-dev.1) (2024-03-10)
 
 
