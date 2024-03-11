@@ -29,6 +29,14 @@ module.exports = {
 			owner: userId,
 			...overrides
 		}),
+		createDummyMeasurement: (sensorId, overrides = {}) => global.dbConnection.models.measurement.create({
+			moisture: 100,
+			temperature: 25,
+			metadata: {
+				sensorId
+			},
+			...overrides
+		})
 	},
 	authenticatedAgent: (user) => {
 		const token = jwt.sign(

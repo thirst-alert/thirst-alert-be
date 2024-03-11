@@ -2,37 +2,44 @@ const Measurement = require('../../entities/measurement')
 
 module.exports.post = {
 	method: 'POST',
-	path: '/measurement',
+	path: '/measurement/:sensorId',
 	schema: {
+		params: {
+			type: 'object',
+			additionalProperties: false,
+			required: ['sensorId'],
+			properties: {
+				sensorId: {
+					type: 'string',
+					pattern: '^[0-9a-fA-F]{24}$'
+				}
+			},
+		},
 		body: {
 			type: 'object',
 			additionalProperties: false,
-			required: ['temperature', 'moisture', 'sensorId'],
+			required: ['temperature', 'moisture'],
 			properties: {
 				temperature: {
 					type: 'number',
 				},
 				moisture: {
-					type: 'number',
-				},
-				sensorId: {
-					type: 'string',
+					type: 'integer',
 				}
 			},
 		},
 	},
 	handler: async (req, res, _next) => {
-		const { temperature, moisture, sensorId } = req.body
+		const { temperature, moisture } = req.body
+		const { sensorId } = req.params
 
-		const measurement = new Measurement({
+		await Measurement.create({
 			temperature,
 			moisture,
-			createdAt: new Date(),
 			metadata: {
 				sensorId
 			}
 		})
-		await measurement.save()
 		return res.status(200).send('OK')
 	}
 }

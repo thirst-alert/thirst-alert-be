@@ -18,5 +18,6 @@ module.exports.attachRoutes = (router) => {
 	router.registerRoute(require('./sensor/post.route').post)
 	router.registerRoute(require('./sensor/patch.route').patch)
 	router.registerRoute(require('./sensor/delete.route').delete)
+	router.registerRoute(require('./measurement/get.route').get)
 	router.registerRoute(require('./measurement/post.route').post)
 }

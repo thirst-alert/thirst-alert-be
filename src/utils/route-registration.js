@@ -12,9 +12,9 @@ function generateSchemaValidators(schema) {
 
 	if (!schema.querystring && !schema.body && !schema.params) return validators
 
-	// TODO: allow ajv options in schema and load them up here if they're present in the route schema
-	const ajv = new Ajv()
+	const ajv = new Ajv(schema.options ?? {})
 	addFormats(ajv)
+
 	if (schema.querystring) {
 		const validate = ajv.compile(schema.querystring)
 		validators.push(function prevalidationQuerystringHandler (req, res, next) {
