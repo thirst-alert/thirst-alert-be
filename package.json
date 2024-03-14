@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "pre-dev": "docker-compose -f ./docker/local/docker-compose.yml --env-file .env up --force-recreate -V",
+    "db:seed": "node docker/local/mongo/seed.js",
     "dev": "nodemon src/index.js",
     "lint": "eslint --ext .js .",
     "test": "cross-env NODE_ENV=test NODE_NO_WARNINGS=1 jest --runInBand --verbose",

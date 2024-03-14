@@ -64,7 +64,7 @@ module.exports.get = {
 
 		return res.status(200).send({
 			message: 'Measurements fetched successfully',
-			measurements
+			measurements: measurements.map(m => m.toJSON())
 		})
 	}
 }
