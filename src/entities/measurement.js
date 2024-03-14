@@ -26,8 +26,26 @@ const measurementSchema = new Schema({
 		timeField: 'createdAt',
 		metaField: 'metadata',
 		granularity: 'minutes',
+	},
+	methods: {
+		toJSON() {
+			return {
+				moisture: this.moisture,
+				temperature: this.temperature,
+				createdAt: this.createdAt
+			}
+		}
 	}
+	// expireAfterSeconds: 10
 })
+
+// measurementSchema.index(
+//   { 'createdAt': 1 },
+//   {
+//     expireAfterSeconds: 10,
+//     partialFilterExpression: { 'metadata.sensorId': { $exists: true } }
+//   }
+// )
 
 measurementSchema.pre('save', function(next) {
 	if (!this.isModified('moisture')) return next()

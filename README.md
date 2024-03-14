@@ -1,8 +1,26 @@
-# agri-be
+# thirst-alert-be
 
-Suggested: run `nvm alias default 21.5` so that you don't have to run `nvm use` every time
+This repo consists of a Express.js server, which handles authentication of users and storing sensor data in a MongoDB instance.
 
-1. `nvm use`
-2. `npm i`
-3. `npm run pre-dev`
-4. In new terminal tab, `nvm use && npm run dev`
+## Get started with local development
+
+### Requirements
+
+- Node - version `21.5`
+- Docker
+
+### Instructions
+
+1. Clone the repo
+2. Create a `.env` file in the root of the project, fill it with the environment variables listed in the `.env.template` file
+3. `npm i` to install dependencies
+4. `npm run pre-dev` to start a mongo instance in a docker container
+
+The following commands are to be ran in a new terminal window
+
+5. Optionally, run `npm run db:seed` to insert some test data in the db
+6. `npm run dev` to start the Express server in dev mode
+
+## API Documentation
+
+https://veil-mochi-901.notion.site/API-Documentation-511851ab652d43c3b78f546358ab4c0a?pvs=4
