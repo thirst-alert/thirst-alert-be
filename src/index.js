@@ -28,10 +28,6 @@ if (process.env.NODE_ENV === 'local') {
 app.use(express.json())
 app.use(reqLogger)
 
-app.get('/', (_req, res) => {
-	res.send('jou ma se poes!')
-})
-
 const router = require('express').Router()
 require('./routes/routes').attachRoutes(router)
 app.use(router)
