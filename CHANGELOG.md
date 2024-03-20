@@ -1,3 +1,10 @@
+# [1.3.0-dev.3](https://github.com/thirst-alert/thirst-alert-be/compare/v1.3.0-dev.2...v1.3.0-dev.3) (2024-03-20)
+
+
+### Features
+
+* 🎸 change email logos ([07358a5](https://github.com/thirst-alert/thirst-alert-be/commit/07358a56b5714b5ace40371eb190453fb4d9011c))
+
 # [1.3.0-dev.2](https://github.com/thirst-alert/thirst-alert-be/compare/v1.3.0-dev.1...v1.3.0-dev.2) (2024-03-11)
 
 
